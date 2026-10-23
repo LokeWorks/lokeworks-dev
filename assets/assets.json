@@ -1,12 +1,13 @@
 {
-  "Fonts and Code": [],
-  "3D": [],
-  "2D": []
-}
-"Fonts and Code": [
+  "fonts-and-code": [
     {
       "title": "Bagel Fat One",
       "description": "Main font used in Beanbound.",
-      "file": "assets/Fonts and Code/Bagel_Fat_One(1).zip",
-      "preview": "assets/Fonts and Code/IMG_6233.jpeg"
+      "file": "assets/Fonts%20and%20Code/Bagel_Fat_One(1).zip",
+      "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg",
+      "buttonText": "Download Font"
     }
+  ],
+  "3D": [],
+  "2D": []
+}
