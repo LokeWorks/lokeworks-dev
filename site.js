@@ -141,7 +141,7 @@ if(document.getElementById("projectGrid")) renderProjects();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
-var FALLBACK_ASSETS={"fonts-and-code": [{"title": "Bagel Fat One", "description": "Main font used in Beanbound.", "file": "assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip", "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg", "buttonText": "Download Font"}, {"title": "LokeWorks Norm", "description": "The official LokeWorks font.", "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf", "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg", "buttonText": "Download Font"}, {"title": "Newyear Coffee", "description": "Free font by Khurasan.", "file": "assets/Fonts%20and%20Code/Newyear_Coffee.zip", "preview": "assets/Fonts%20and%20Code/newyear-coffee-preview.jpg", "buttonText": "Download Font"}], "3D": [], "2D": []};
+var FALLBACK_ASSETS={"fonts-and-code": [{"title": "Bagel Fat One", "description": "Main font used in Beanbound.", "file": "assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip", "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg", "buttonText": "Download Font"}, {"title": "LokeWorks Norm", "description": "The official LokeWorks font.", "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf", "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg", "buttonText": "Download Font"}, {"title": "Newyear Coffee", "description": "Free font by Khurasan.", "file": "assets/Fonts%20and%20Code/Newyear_Coffee.zip", "preview": "assets/Fonts%20and%20Code/newyear-coffee-preview.jpg", "buttonText": "Download Font", "credit": "Khurasan", "creditUrl": "https://www.khurasanstudio.com", "supportUrl": "https://paypal.me/khurasantype"}], "3D": [], "2D": []};
 
 // Load assets listed in assets/assets.json. Empty categories stay hidden.
 async function renderFolderAssets(){
@@ -182,6 +182,21 @@ async function renderFolderAssets(){
           link.href=item.file;
           link.setAttribute("download","");
           body.appendChild(link);
+        }
+        if(item.credit||item.supportUrl){
+          var meta=el("p","asset-credit");
+          meta.style.cssText="margin:12px 0 0;font-size:.9rem";
+          if(item.credit){
+            meta.appendChild(document.createTextNode("Made by "));
+            if(item.creditUrl){
+              var ca=el("a",null,item.credit);ca.href=item.creditUrl;ca.target="_blank";ca.rel="noopener";meta.appendChild(ca);
+            } else meta.appendChild(document.createTextNode(item.credit));
+          }
+          if(item.supportUrl){
+            if(item.credit) meta.appendChild(document.createTextNode(" \u00b7 "));
+            var sa=el("a",null,"Support the creator \u2665");sa.href=item.supportUrl;sa.target="_blank";sa.rel="noopener";meta.appendChild(sa);
+          }
+          body.appendChild(meta);
         }
         card.appendChild(body);
         target.appendChild(card);
