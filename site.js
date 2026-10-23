@@ -17,7 +17,7 @@ var VIDEOS = [
 var SOCIALS = [
   {name:"YouTube", note:"Devlogs, shorts, prototypes and releases", url:"https://www.youtube.com/@Loke_works"},
   {name:"Twitch", note:"Live development", url:"https://www.twitch.tv/lokeworks"},
-  {name:"Discord", note:"Chat and feedback", url:""},
+  {name:"Discord", note:"Chat and feedback", url:"https://discord.com/invite/9qu84vd3em"},
   {name:"Instagram", note:"Clips and screenshots", url:"https://www.instagram.com/lokeworks"},
   {name:"X", note:"Updates", url:"https://x.com/lokeworks"}
 ];
