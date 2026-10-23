@@ -141,10 +141,7 @@ if(document.getElementById("projectGrid")) renderProjects();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
-var FALLBACK_ASSETS={
-  "fonts-and-code":[{title:"Bagel Fat One",description:"Main font used in Beanbound.",file:"assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip",preview:"assets/Fonts%20and%20Code/IMG_6233.jpeg",buttonText:"Download Font"}],
-  "3D":[],"2D":[]
-};
+var FALLBACK_ASSETS={"fonts-and-code": [{"title": "Bagel Fat One", "description": "Main font used in Beanbound.", "file": "assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip", "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg", "buttonText": "Download Font"}, {"title": "LokeWorks Norm", "description": "The official LokeWorks font.", "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf", "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg", "buttonText": "Download Font"}], "3D": [], "2D": []};
 
 // Load assets listed in assets/assets.json. Empty categories stay hidden.
 async function renderFolderAssets(){
