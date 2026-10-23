@@ -217,3 +217,19 @@ document.addEventListener("click",function(e){
   var b=e.target.closest&&e.target.closest("[data-go]");
   if(b) window.location.href=b.getAttribute("data-go")+".html";
 });
+
+// Home page: press and hold Loke to swap his picture; let go to swap back.
+(function(){
+  var guy=document.getElementById("guy");
+  if(!guy) return;
+  var normal=guy.getAttribute("src");
+  var pressed=guy.getAttribute("data-press");
+  new Image().src=pressed; // preload so the swap is instant
+  function down(e){ guy.src=pressed; }
+  function up(){ guy.src=normal; }
+  guy.addEventListener("pointerdown",down);
+  guy.addEventListener("pointerup",up);
+  guy.addEventListener("pointercancel",up);
+  guy.addEventListener("pointerleave",up);
+  guy.addEventListener("contextmenu",function(e){e.preventDefault();});
+})();
