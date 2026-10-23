@@ -141,15 +141,26 @@ if(document.getElementById("projectGrid")) renderProjects();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
+var FALLBACK_ASSETS={
+  "fonts-and-code":[{title:"Bagel Fat One",description:"Main font used in Beanbound.",file:"assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip",preview:"assets/Fonts%20and%20Code/IMG_6233.jpeg",buttonText:"Download Font"}],
+  "3D":[],"2D":[]
+};
+
 // Load assets listed in assets/assets.json. Empty categories stay hidden.
 async function renderFolderAssets(){
   var keys=["fonts-and-code","3D","2D"];
   var empty=document.getElementById("assetsEmpty");
   var shown=0;
   try{
-    var response=await fetch("assets/assets.json",{cache:"no-store"});
-    if(!response.ok) throw new Error("Could not load assets/assets.json");
-    var manifest=await response.json();
+    var manifest;
+    try{
+      var response=await fetch("assets/assets.json?v="+Date.now(),{cache:"no-store"});
+      if(!response.ok) throw new Error("Could not load assets/assets.json");
+      manifest=await response.json();
+    }catch(e){
+      // Fallback (e.g. page opened straight from disk, where fetch is blocked)
+      manifest=FALLBACK_ASSETS;
+    }
 
     keys.forEach(function(key){
       var section=document.getElementById("assetSection-"+key);
