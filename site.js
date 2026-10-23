@@ -141,80 +141,50 @@ if(document.getElementById("projectGrid")) renderProjects();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
-// Load assets listed in assets/assets.json.
+// Load assets listed in assets/assets.json. Empty categories stay hidden.
 async function renderFolderAssets(){
-  const categories=[
-    {key:"fonts-and-code",id:"assetGrid-font-code",title:"Fonts and Code"},
-    {key:"3D",id:"assetGrid-3d",title:"3D"},
-    {key:"2D",id:"assetGrid-2d",title:"2D"}
-  ];
-
+  var keys=["fonts-and-code","3D","2D"];
+  var empty=document.getElementById("assetsEmpty");
+  var shown=0;
   try{
-    const response=await fetch("assets/assets.json",{cache:"no-store"});
+    var response=await fetch("assets/assets.json",{cache:"no-store"});
     if(!response.ok) throw new Error("Could not load assets/assets.json");
+    var manifest=await response.json();
 
-    const manifest=await response.json();
-
-    for(const category of categories){
-      const target=document.getElementById(category.id);
-      if(!target) continue;
-
-      target.replaceChildren();
-      const items=manifest[category.key]||[];
-
-      if(!items.length){
-        const empty=document.createElement("p");
-        empty.className="muted";
-        empty.textContent="No assets added yet.";
-        target.appendChild(empty);
-        continue;
-      }
-
-      for(const item of items){
-        const card=document.createElement("article");
-        card.className="card";
-
-        const title=document.createElement("h3");
-        title.textContent=item.title||item.name||"Untitled asset";
-        card.appendChild(title);
-
-        if(item.description){
-          const description=document.createElement("p");
-          description.textContent=item.description;
-          card.appendChild(description);
-        }
-
+    keys.forEach(function(key){
+      var section=document.getElementById("assetSection-"+key);
+      var target=document.getElementById("assetGrid-"+key);
+      var items=manifest[key]||[];
+      if(!section||!target||!items.length) return;
+      target.textContent="";
+      items.forEach(function(item){
+        var card=el("article","card");
         if(item.preview){
-          const preview=document.createElement("img");
-          preview.src=item.preview;
-          preview.alt=item.title?item.title+" preview":"Asset preview";
-          preview.loading="lazy";
-          preview.className="asset-preview";
-          card.appendChild(preview);
+          var img=el("img","asset-preview");
+          img.src=item.preview;
+          img.alt=(item.title||"Asset")+" preview";
+          img.loading="lazy";
+          card.appendChild(img);
         }
-
+        var body=el("div","body");
+        body.appendChild(el("h3",null,item.title||item.name||"Untitled asset"));
+        if(item.description) body.appendChild(el("p",null,item.description));
         if(item.file){
-          const link=document.createElement("a");
+          var link=el("a","btn alt",item.buttonText||"Download");
           link.href=item.file;
-          link.textContent=item.buttonText||"Download";
-          link.className="button";
           link.setAttribute("download","");
-          card.appendChild(link);
+          body.appendChild(link);
         }
-
+        card.appendChild(body);
         target.appendChild(card);
-      }
-    }
+      });
+      section.hidden=false;
+      shown++;
+    });
   } catch(error){
-    for(const id of ["assetGrid-games","assetGrid-3d","assetGrid-2d"]){
-      const target=document.getElementById(id);
-      if(target){
-        target.innerHTML='<p class="muted">Could not load the asset list. Check that assets/assets.json exists.</p>';
-      }
-    }
+    console.error(error);
   }
+  if(!shown&&empty) empty.hidden=false;
 }
 
-if(document.getElementById("assetGrid-games")){
-  renderFolderAssets();
-}
+if(document.getElementById("assetsEmpty")) renderFolderAssets();
