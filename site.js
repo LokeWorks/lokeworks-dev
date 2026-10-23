@@ -196,3 +196,9 @@ async function renderFolderAssets(){
 }
 
 if(document.getElementById("assetsEmpty")) renderFolderAssets();
+
+// Home page buttons: data-go="projects" -> projects.html, etc.
+document.addEventListener("click",function(e){
+  var b=e.target.closest&&e.target.closest("[data-go]");
+  if(b) window.location.href=b.getAttribute("data-go")+".html";
+});
