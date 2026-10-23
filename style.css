@@ -1,3 +1,4 @@
+
 :root{
   --bg:#eef0f7; --surface:#ffffff; --ink:#1b1a3a; --muted:#5d5c7e; --line:#d6d8e8;
   --accent:#3646f5; --accent-ink:#ffffff; --pop:#ffd23f; --pop-ink:#1b1a3a;
@@ -223,3 +224,6 @@ nav a[aria-current="page"]{ background:var(--ink); color:var(--bg); }
 .asset-preview{display:block;width:100%;max-height:220px;object-fit:cover;border-radius:8px;margin:12px 0}
 .card .button{display:inline-block;margin-top:12px;text-decoration:none}
 .asset-section[hidden],.empty[hidden]{display:none}
+
+.logo-img{display:block;height:46px;width:auto}
+@media(max-width:520px){.logo-img{height:38px}}
