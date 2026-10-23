@@ -144,9 +144,9 @@ if(document.getElementById("socialList")) renderSocials();
 // Load assets listed in assets/assets.json.
 async function renderFolderAssets(){
   const categories=[
-    {key:"games",id:"assetGrid-games",title:"Games"},
-    {key:"3-D",id:"assetGrid-3d",title:"3-D"},
-    {key:"2-D",id:"assetGrid-2d",title:"2-D"}
+    {key:"fonts-and-code",id:"assetGrid-font-code",title:"Fonts and Code"},
+    {key:"3D",id:"assetGrid-3d",title:"3D"},
+    {key:"2D",id:"assetGrid-2d",title:"2D"}
   ];
 
   try{
