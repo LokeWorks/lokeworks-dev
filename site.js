@@ -15,11 +15,11 @@ var VIDEOS = [
 ];
 
 var SOCIALS = [
-  {name:"YouTube", note:"Devlogs, shorts, prototypes and releases", url:""},
-  {name:"Twitch", note:"Live development", url:""},
+  {name:"YouTube", note:"Devlogs, shorts, prototypes and releases", url:"https://www.youtube.com/@Loke-works"},
+  {name:"Twitch", note:"Live development", url:"https://www.twitch.tv/lokeworks"},
   {name:"Discord", note:"Chat and feedback", url:""},
-  {name:"Instagram", note:"Clips and screenshots", url:""},
-  {name:"X", note:"Updates", url:""}
+  {name:"Instagram", note:"Clips and screenshots", url:"https://www.instagram.com/lokeworks"},
+  {name:"X", note:"Updates", url:"https://x.com/lokeworks"}
 ];
 
 function el(t,c,h){
