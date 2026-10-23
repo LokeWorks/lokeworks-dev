@@ -2,9 +2,9 @@
 
 Place downloadable files in one of these folders:
 
-- `assets/Games/`
-- `assets/3-D/`
-- `assets/2-D/`
+- `assets/Fonts and Code/`
+- `assets/3D/`
+- `assets/2D/`
 
 Because GitHub Pages is static hosting, browser JavaScript cannot automatically list every file in a folder. To make an asset appear on the website, add an entry to `assets/assets.json`.
 
