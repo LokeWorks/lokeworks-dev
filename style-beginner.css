@@ -1,0 +1,39 @@
+/* "Just learning" look. Loaded after style.css. To go back, remove the
+   <link href="style-beginner.css"> line from each page (or use tag v1-polished). */
+:root:root:root{
+  --bg:#fffbe0; --surface:#ffffff; --ink:#111111; --muted:#444444; --line:#000000;
+  --accent:#0000ee; --accent-ink:#ffffff; --pop:#ffff66; --pop-ink:#000000; color-scheme:light;
+}
+body{font-family:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive,sans-serif;font-size:18px;line-height:1.5;
+  background:#fffbe0 repeating-linear-gradient(0deg,transparent 0 27px,#e6f0ff 27px 28px)}
+body::before{display:none}
+header{position:static;background:#bfe0ff;border-bottom:4px ridge #6a6a6a}
+.bar{justify-content:center;text-align:center}
+nav{display:flex;flex-wrap:wrap;gap:0;justify-content:center}
+nav a{background:none!important;color:#0000ee!important;text-decoration:underline;border:0;border-radius:0;
+  padding:2px 10px;font-weight:normal;border-left:2px solid #000}
+nav a:first-child{border-left:0}
+nav a[aria-current="page"]{color:#ff0000!important;font-weight:bold}
+nav a:visited{color:#551a8b}
+h1,h2,h3{font-family:inherit;letter-spacing:0;color:#cc0000}
+h2{text-decoration:underline;text-align:center}
+.sub{text-align:center;color:#333}
+.hero,.card,.tool,.page-intro,.coming-strip,.empty,.asset-entry{
+  border:3px solid #000!important;border-radius:0!important;box-shadow:none!important;
+  background:#fff!important;transform:none!important}
+.hero::before,.hero::after{display:none}
+.page-intro,.coming-strip{border-style:dashed!important;background:#fff8c4!important}
+.page-kicker{color:#cc0000;letter-spacing:0;text-transform:none}
+.btn,.button,button.btn{background:#e0e0e0!important;color:#000!important;border:3px outset #bbb!important;
+  border-radius:0!important;box-shadow:none!important;font-family:inherit;font-weight:normal;
+  text-decoration:none;padding:4px 14px;cursor:pointer}
+.btn:active{border-style:inset!important}
+.btn.alt{background:#e0e0e0!important}
+.tag{border-radius:0;border:1px solid #000;background:#ffff99;color:#000}
+.logo-img,.hero-logo img{image-rendering:auto}
+.guy{border:3px solid #000;background:#fff}
+.site-footer{text-align:center;border-top:4px ridge #6a6a6a;margin-top:40px;padding:14px;color:#000}
+.site-footer::after{content:" \2014 made by Loke, still learning! (more coming soon)";}
+.tool,.asset-entry{background:#e6ffe6!important}
+.asset-entry-link,.asset-entry-icon{color:#0000ee}
+a{color:#0000ee}
