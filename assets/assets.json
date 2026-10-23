@@ -8,6 +8,16 @@
       "buttonText": "Download Font"
     }
   ],
+  {
+  "fonts-and-code": [
+    {
+      "title": "LokeWorks Norm",
+      "description": "The offical LokeWorks font.",
+      "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf",
+      "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg",
+      "buttonText": "Download Font"
+    }
+  ],
   "3D": [],
   "2D": []
 }
