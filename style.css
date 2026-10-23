@@ -232,3 +232,28 @@ h1.hero-logo{margin:0 0 12px;line-height:0}
 h1.hero-logo img{display:block;width:min(100%,440px);height:auto}
 
 .guy{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+/* Project detail page */
+.proj-layout{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start}
+.proj-side{display:flex;flex-direction:column;gap:10px;position:sticky;top:90px}
+.proj-pill{display:block;text-decoration:none;font-weight:700;border:2px solid var(--ink);border-radius:999px;background:var(--surface);color:var(--ink);padding:8px 16px}
+.proj-pill[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.proj-main{min-width:0}
+.proj-head{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;margin-bottom:28px}
+.proj-icon{width:140px;height:140px;border-radius:28px;border:2px solid var(--ink);object-fit:cover;display:block}
+.proj-info{flex:1;min-width:200px}
+.proj-title{margin:0 0 4px;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1}
+.proj-tagline{margin:0 0 6px;font-weight:600;font-size:1.1rem}
+.proj-price{margin:0 0 12px;color:var(--muted);font-weight:600}
+.proj-info .btn{display:inline-block;text-decoration:none;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:8px 28px}
+.proj-shots{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.proj-shots img{height:440px;width:auto;flex:none;border-radius:18px;border:2px solid var(--ink);scroll-snap-align:start;display:block}
+.proj-h2{margin:24px 0 8px}
+.proj-about{margin:0 0 14px;max-width:62ch}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap}
+@media(max-width:760px){
+  .proj-layout{grid-template-columns:1fr;gap:18px}
+  .proj-side{flex-direction:row;flex-wrap:wrap;position:static}
+  .proj-icon{width:104px;height:104px;border-radius:22px}
+  .proj-shots img{height:340px}
+}

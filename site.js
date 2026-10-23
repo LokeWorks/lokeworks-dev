@@ -2,7 +2,9 @@
    Entries that aren't in use are commented out with //. Remove the // to turn one on. */
 var BEAN_IMG = "assets/beanbound.jpg";
 var PROJECTS = [
-  {name:"Beanbound 🌱", kind:"iOS", status:"Released", blurb:"You play as a bean climbing from the dirt all the way to space at 100,000m, dodging hazards and evolving as you go. No ads, free to play. How far can you grow?", url:"https://apps.apple.com/us/app/beanbound/id6818844668", cta:"Get it on the App Store", img:BEAN_IMG, alt:"Beanbound gameplay: a smiling bean on a vine climbing through a forest, collecting water drops and dodging birds"},
+  {slug:"beanbound", icon:"assets/beanbound/icon.png", tagline:"How far can you grow?", price:"Free on iOS",
+   shots:["assets/beanbound/shot1.jpg","assets/beanbound/shot2.jpg","assets/beanbound/shot3.jpg"],
+   name:"Beanbound 🌱", kind:"iOS", status:"Released", blurb:"You play as a bean climbing from the dirt all the way to space at 100,000m, dodging hazards and evolving as you go. No ads, free to play. How far can you grow?", url:"https://apps.apple.com/us/app/beanbound/id6818844668", cta:"Get it on the App Store", img:BEAN_IMG, alt:"Beanbound gameplay: a smiling bean on a vine climbing through a forest, collecting water drops and dodging birds"},
   // {name:"Project name", kind:"VR", status:"Prototype", blurb:"One line about the game and what makes it fun.", url:""},
   // {name:"Project name", kind:"Flatscreen", status:"Released", blurb:"One line about the game and what makes it fun.", url:""}
 ];
@@ -64,10 +66,67 @@ function renderProjects(){
     t.appendChild(el("span","tag",p.status));
     t.appendChild(el("span","tag plain",p.kind));
     b.appendChild(t);
-    b.appendChild(linkOrOff(p,p.cta||"Play or read more"));
+    var more=el("a","btn",p.slug?"View page":"Coming soon");
+    if(p.slug) more.href="project.html?p="+encodeURIComponent(p.slug);
+    b.appendChild(more);
     c.appendChild(b);
+    if(p.slug){
+      c.style.cursor="pointer";
+      c.addEventListener("click",function(e){
+        if(e.target.closest("a")) return;
+        window.location.href="project.html?p="+encodeURIComponent(p.slug);
+      });
+    }
     g.appendChild(c);
   });
+}
+
+function renderProjectPage(){
+  var side=document.getElementById("projSide");
+  var main=document.getElementById("projMain");
+  var list=PROJECTS.filter(function(p){return p.slug;});
+  var want=new URLSearchParams(location.search).get("p");
+  var cur=list.filter(function(p){return p.slug===want;})[0]||list[0];
+  side.textContent="";
+  list.forEach(function(p){
+    var a=el("a","proj-pill",p.name);
+    a.href="project.html?p="+encodeURIComponent(p.slug);
+    if(p===cur) a.setAttribute("aria-current","page");
+    side.appendChild(a);
+  });
+  main.textContent="";
+  if(!cur){ main.appendChild(el("p","sub","No projects yet.")); return; }
+  document.title=cur.name+" — LokeWorks";
+
+  var head=el("div","proj-head");
+  if(cur.icon){
+    var ic=el("img","proj-icon");
+    ic.src=cur.icon; ic.alt=cur.name+" icon";
+    head.appendChild(ic);
+  }
+  var info=el("div","proj-info");
+  info.appendChild(el("h1","proj-title",cur.name));
+  if(cur.tagline) info.appendChild(el("p","proj-tagline",cur.tagline));
+  if(cur.price) info.appendChild(el("p","proj-price",cur.price));
+  info.appendChild(linkOrOff(cur,"Get"));
+  head.appendChild(info);
+  main.appendChild(head);
+
+  if(cur.shots&&cur.shots.length){
+    var row=el("div","proj-shots");
+    cur.shots.forEach(function(src,i){
+      var im=el("img");
+      im.src=src; im.alt=cur.name+" screenshot "+(i+1); im.loading="lazy";
+      row.appendChild(im);
+    });
+    main.appendChild(row);
+  }
+  main.appendChild(el("h2","proj-h2","About"));
+  main.appendChild(el("p","proj-about",cur.blurb));
+  var t=el("div","proj-tags");
+  t.appendChild(el("span","tag",cur.status));
+  t.appendChild(el("span","tag plain",cur.kind));
+  main.appendChild(t);
 }
 
 var activeType="All";
@@ -138,6 +197,7 @@ function renderSocials(){
 
 // Render only the content present on the current HTML page.
 if(document.getElementById("projectGrid")) renderProjects();
+if(document.getElementById("projMain")) renderProjectPage();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
