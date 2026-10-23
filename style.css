@@ -225,5 +225,5 @@ nav a[aria-current="page"]{ background:var(--ink); color:var(--bg); }
 .card .button{display:inline-block;margin-top:12px;text-decoration:none}
 .asset-section[hidden],.empty[hidden]{display:none}
 
-.logo-img{display:block;height:46px;width:auto}
+.logo-img{display:block;height:52px;width:auto}
 @media(max-width:520px){.logo-img{height:38px}}
