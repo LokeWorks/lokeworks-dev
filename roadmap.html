@@ -8,6 +8,7 @@
   Add a new line, change a status to move it, or delete a line.
   Keep the comma at the end of each line (except it is fine on the last one too).
   Lines starting with // are turned off.
+  Scroll down to UNLOCKS for finished things that wait for a goal.
   ==================================================================
 -->
 <script>
@@ -17,8 +18,22 @@ var ROADMAP = [
   // {title:"Something I am building", note:"A short line about it.", status:"doing"},
   // {title:"Something coming later", note:"A short line about it.", status:"planned"},
 ];
+
+/* ========= LOCKED / UNLOCKS =========
+   Things that are finished, but only get released once a goal is reached.
+   title:   what it is (or use hidden:true to show "???" instead)
+   note:    short line about it
+   goal:    what has to happen, e.g. "Beanbound reaches 1,000 downloads"
+   current: where you are now (a number)
+   target:  the number you need to reach
+   unit:    optional label, e.g. "downloads"
+   hidden:  true = keep the title a secret ("???")
+   When current reaches target it shows as UNLOCKED automatically. */
+var UNLOCKS = [
+  // {title:"The finished thing", note:"Done and waiting.", goal:"Reach 1,000 downloads", current:250, target:1000, unit:"downloads", hidden:false},
+];
 </script>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Roadmap — LokeWorks</title><meta name="description" content="What LokeWorks is working on, what is planned and what is done."/><meta name="theme-color" content="#4397F7"/><meta property="og:type" content="website"/><meta property="og:site_name" content="LokeWorks"/><meta property="og:title" content="Roadmap — LokeWorks"/><meta property="og:description" content="What LokeWorks is working on, what is planned and what is done."/><meta property="og:image" content="https://lokeworks.github.io/lokeworks-dev/assets/og-image.png"/><meta name="twitter:card" content="summary_large_image"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;display=swap" rel="stylesheet"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><link href="style.css?v=14" rel="stylesheet"/></head><body><header>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Roadmap — LokeWorks</title><meta name="description" content="What LokeWorks is working on, what is planned and what is done."/><meta name="theme-color" content="#4397F7"/><meta property="og:type" content="website"/><meta property="og:site_name" content="LokeWorks"/><meta property="og:title" content="Roadmap — LokeWorks"/><meta property="og:description" content="What LokeWorks is working on, what is planned and what is done."/><meta property="og:image" content="https://lokeworks.github.io/lokeworks-dev/assets/og-image.png"/><meta name="twitter:card" content="summary_large_image"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;display=swap" rel="stylesheet"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><link href="style.css?v=15" rel="stylesheet"/></head><body><header>
 <div class="bar">
 <a aria-label="LokeWorks home" class="logo" href="index.html"><img alt="LokeWorks" class="logo-img" src="assets/lokeworks-logo-site.svg?v=3"/></a>
 <nav aria-label="Main"><a href="index.html">Home</a><a aria-current="page" href="projects.html">Projects</a><a href="assets.html">Assets</a><a href="videos.html">Videos</a><a href="socials.html">Socials</a></nav>
@@ -28,6 +43,11 @@ var ROADMAP = [
 <h2>Roadmap</h2>
 <p class="sub">What I’m working on, what’s next, and what’s done.</p>
 <div class="road" id="road"></div>
+<div class="unlocks" id="unlocks" hidden>
+<h2>Locked until a goal is hit</h2>
+<p class="sub">These are finished. I’ll release them once the goal is reached.</p>
+<div class="unlock-list" id="unlockList"></div>
+</div>
 </section></main>
 <script>
 (function(){
@@ -48,5 +68,31 @@ var ROADMAP = [
     });
     root.appendChild(col);
   });
+
+  if(UNLOCKS.length){
+    var box=document.getElementById("unlocks");
+    box.hidden=false;
+    var list=document.getElementById("unlockList");
+    UNLOCKS.forEach(function(u){
+      var cur=Number(u.current)||0,tar=Number(u.target)||1;
+      var pct=Math.max(0,Math.min(100,Math.round(cur/tar*100)));
+      var open=cur>=tar;
+      var card=document.createElement("div");card.className="unlock-card"+(open?" is-open":"");
+      var top=document.createElement("div");top.className="unlock-top";
+      var t=document.createElement("strong");
+      t.textContent=(u.hidden&&!open)?"???":u.title;
+      var badge=document.createElement("span");badge.className="unlock-badge";badge.textContent=open?"UNLOCKED":"LOCKED";
+      top.appendChild(t);top.appendChild(badge);card.appendChild(top);
+      if(u.note&&!(u.hidden&&!open)){var d=document.createElement("p");d.textContent=u.note;card.appendChild(d);}
+      if(u.goal){var g=document.createElement("p");g.className="unlock-goal";g.textContent="Unlocks when: "+u.goal;card.appendChild(g);}
+      var bar=document.createElement("div");bar.className="unlock-bar";
+      bar.setAttribute("role","progressbar");bar.setAttribute("aria-valuemin","0");bar.setAttribute("aria-valuemax",String(tar));bar.setAttribute("aria-valuenow",String(Math.min(cur,tar)));
+      var fill=document.createElement("div");fill.className="unlock-fill";fill.style.width=pct+"%";bar.appendChild(fill);card.appendChild(bar);
+      var n=document.createElement("p");n.className="unlock-num";
+      n.textContent=cur.toLocaleString()+" / "+tar.toLocaleString()+(u.unit?" "+u.unit:"")+" ("+pct+"%)";
+      card.appendChild(n);
+      list.appendChild(card);
+    });
+  }
 })();
 </script></body></html>

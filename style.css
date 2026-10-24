@@ -340,3 +340,18 @@ main section>*:nth-child(n+6){animation-delay:.3s}
 .subtabs{display:flex;gap:8px;margin:0 0 14px}
 .subtabs a{text-decoration:none;font-weight:700;font-size:.95rem;border:2px solid var(--ink);border-radius:999px;padding:4px 16px;color:var(--ink);background:var(--surface)}
 .subtabs a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+/* Roadmap: locked until a goal */
+.unlocks{margin-top:34px}
+.unlocks[hidden]{display:none}
+.unlock-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.unlock-card{border:2px dashed var(--ink);border-radius:12px;background:var(--surface);padding:14px 16px}
+.unlock-card.is-open{border-style:solid;border-color:var(--accent)}
+.unlock-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.unlock-badge{font-size:.7rem;font-weight:800;letter-spacing:.08em;border:2px solid var(--ink);border-radius:999px;padding:1px 9px}
+.unlock-card.is-open .unlock-badge{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.unlock-card p{margin:6px 0 0;color:var(--muted);font-size:.92rem}
+.unlock-card .unlock-goal{color:var(--ink);font-weight:600}
+.unlock-bar{height:14px;border:2px solid var(--ink);border-radius:999px;margin-top:10px;overflow:hidden;background:var(--bg)}
+.unlock-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .6s}
+.unlock-card .unlock-num{margin-top:6px;font-weight:700;color:var(--ink)}
