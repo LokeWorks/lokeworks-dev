@@ -396,3 +396,18 @@ document.addEventListener("click",function(e){
     if(pos===seq.length){pos=0;window.location.href="secret.html";}
   },{passive:true});
 })();
+
+// Suggestion box: opens the visitor's email app with the message filled in.
+(function(){
+  var f=document.getElementById("suggestForm");
+  if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var topic=document.getElementById("sgTopic").value;
+    var name=document.getElementById("sgName").value.trim();
+    var msg=document.getElementById("sgMsg").value.trim();
+    if(!msg) return;
+    var body=msg+(name?"\n\n\u2014 "+name:"");
+    window.location.href="mailto:everloke8@gmail.com?subject="+encodeURIComponent("LokeWorks suggestion: "+topic)+"&body="+encodeURIComponent(body);
+  });
+})();

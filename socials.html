@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Socials — LokeWorks</title><meta name="description" content="Find LokeWorks on YouTube, Twitch, Discord, Instagram and Twitter, or send an email."/><meta name="theme-color" content="#4397F7"/><meta property="og:type" content="website"/><meta property="og:site_name" content="LokeWorks"/><meta property="og:title" content="Socials — LokeWorks"/><meta property="og:description" content="Find LokeWorks on YouTube, Twitch, Discord, Instagram and X."/><meta property="og:image" content="https://lokeworks.github.io/lokeworks-dev/assets/og-image.png"/><meta name="twitter:card" content="summary_large_image"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;display=swap" rel="stylesheet"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><link href="style.css?v=18" rel="stylesheet"/></head><body><header>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Socials — LokeWorks</title><meta name="description" content="Find LokeWorks on YouTube, Twitch, Discord, Instagram and Twitter, or send an email."/><meta name="theme-color" content="#4397F7"/><meta property="og:type" content="website"/><meta property="og:site_name" content="LokeWorks"/><meta property="og:title" content="Socials — LokeWorks"/><meta property="og:description" content="Find LokeWorks on YouTube, Twitch, Discord, Instagram and X."/><meta property="og:image" content="https://lokeworks.github.io/lokeworks-dev/assets/og-image.png"/><meta name="twitter:card" content="summary_large_image"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;display=swap" rel="stylesheet"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><link href="style.css?v=19" rel="stylesheet"/></head><body><header>
 <div class="bar">
 <a aria-label="LokeWorks home" class="logo" href="index.html"><img alt="LokeWorks" class="logo-img" src="assets/lokeworks-logo-site.png?v=1"/></a>
 <nav aria-label="Main"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="assets.html">Assets</a><a href="videos.html">Videos</a><a aria-current="page" href="socials.html">Socials</a></nav>
@@ -9,5 +9,17 @@
 <p class="sub">Find LokeWorks where you like to watch, chat or follow.</p>
 <div class="page-intro"><span class="page-kicker">AROUND THE WEB</span><p>Follow along for game updates, clips, progress, and future releases.</p></div>
 <ul class="links" id="socialList"></ul>
+<form class="suggest" id="suggestForm">
+<h2 class="suggest-title">Suggestion box</h2>
+<p class="sub" style="margin:0 0 12px">Got an idea for Beanbound or the site? Send it my way.</p>
+<label>What is it about?
+<select id="sgTopic"><option>Beanbound idea</option><option>Bug or problem</option><option>Website idea</option><option>Something else</option></select></label>
+<label>Your name (optional)
+<input id="sgName" type="text" autocomplete="name" maxlength="60"/></label>
+<label>Your suggestion
+<textarea id="sgMsg" rows="5" required maxlength="1500"></textarea></label>
+<button class="btn" type="submit">Send suggestion</button>
+<p class="suggest-note">This opens your email app with the message ready to send.</p>
+</form>
 
-</section></main><script src="site.js?v=32"></script></body></html>
+</section></main><script src="site.js?v=33"></script></body></html>
