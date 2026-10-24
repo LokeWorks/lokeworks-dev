@@ -364,3 +364,5 @@ main section>*:nth-child(n+6){animation-delay:.3s}
 .howto-box dt{font-weight:700;margin-top:10px}
 .howto-box dt:first-child{margin-top:0}
 .howto-box dd{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+h1.page-h{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.03em;line-height:1.05;margin:0 0 10px}
+.logo-img{aspect-ratio:900/212;width:auto}
