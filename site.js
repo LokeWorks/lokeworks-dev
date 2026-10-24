@@ -341,19 +341,18 @@ document.addEventListener("click",function(e){
   guy.addEventListener("contextmenu",function(e){e.preventDefault();});
 })();
 
-// Secret: classic cheat code (or tap Loke 7 times) = bean party.
+// Secret: tap the smiley on Loke's shirt 5 times, quickly.
 (function(){
-  var code=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"],pos=0,busy=false;
-  document.addEventListener("keydown",function(e){
-    var k=e.key.length===1?e.key.toLowerCase():e.key;
-    pos=(k===code[pos])?pos+1:(k===code[0]?1:0);
-    if(pos===code.length){pos=0;party();}
-  });
-  var taps=0,tapTimer;
+  var busy=false,taps=0,tapTimer;
   document.addEventListener("pointerdown",function(e){
-    if(!e.target.closest||!e.target.closest("#guy")) return;
-    taps++; clearTimeout(tapTimer); tapTimer=setTimeout(function(){taps=0;},1800);
-    if(taps>=7){taps=0;party();}
+    var g=e.target.closest&&e.target.closest("#guy");
+    if(!g) return;
+    var r=g.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+    var dx=x-0.52, dy=(y-0.58)*(r.height/r.width);
+    if(Math.sqrt(dx*dx+dy*dy)>0.09){ taps=0; return; }
+    taps++; clearTimeout(tapTimer); tapTimer=setTimeout(function(){taps=0;},2500);
+    if(taps>=5){taps=0;party();}
   });
   function party(){
     if(busy) return; busy=true;
@@ -375,5 +374,5 @@ document.addEventListener("click",function(e){
       else { c.remove(); msg.remove(); busy=false; }
     })(t0);
   }
-  try{console.log("%cLokeWorks","font-size:22px;font-weight:800;color:#cc484c","\nPsst... try a classic cheat code. ↑↑↓↓←→←→ B A");}catch(e){}
+  try{console.log("%cLokeWorks","font-size:22px;font-weight:800;color:#cc484c","- psst, the smile on his shirt knows something.");}catch(e){}
 })();
