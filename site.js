@@ -22,7 +22,7 @@ var SOCIALS = [
   {name:"Twitch", note:"Live development", url:"https://www.twitch.tv/lokeworks"},
   {name:"Discord", note:"Chat and feedback", url:"https://discord.com/invite/9qu84vd3em"},
   {name:"Instagram", note:"Clips and screenshots", url:"https://www.instagram.com/lokeworks"},
-  {name:"X", note:"Updates", url:"https://x.com/lokeworks"}
+  {name:"Twitter", note:"My personal account, but I still post updates here", url:"https://x.com/lokeworks"}
 ];
 
 function el(t,c,h){
