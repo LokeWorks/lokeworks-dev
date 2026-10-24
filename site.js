@@ -341,19 +341,12 @@ document.addEventListener("click",function(e){
   guy.addEventListener("contextmenu",function(e){e.preventDefault();});
 })();
 
-// Press and hold the smiley on Loke's shirt for 3 seconds.
+// Cheat code: up up down down left right left right b a -> secret room.
 (function(){
-  var guy=document.getElementById("guy"),t,sx,sy;
-  if(!guy) return;
-  function cancel(){clearTimeout(t);}
-  guy.addEventListener("pointerdown",function(e){
-    var r=guy.getBoundingClientRect();
-    var x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
-    var dx=x-0.52,dy=(y-0.58)*(r.height/r.width);
-    cancel();sx=e.clientX;sy=e.clientY;
-    if(Math.sqrt(dx*dx+dy*dy)>0.09) return;
-    t=setTimeout(function(){window.location.href="secret.html";},3000);
+  var code=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"],pos=0;
+  document.addEventListener("keydown",function(e){
+    var k=e.key.length===1?e.key.toLowerCase():e.key;
+    pos=(k===code[pos])?pos+1:(k===code[0]?1:0);
+    if(pos===code.length){pos=0;window.location.href="secret.html";}
   });
-  guy.addEventListener("pointermove",function(e){if(t&&Math.abs(e.clientX-sx)+Math.abs(e.clientY-sy)>25)cancel();});
-  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){guy.addEventListener(ev,cancel);});
 })();
