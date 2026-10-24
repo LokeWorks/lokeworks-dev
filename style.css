@@ -272,3 +272,23 @@ h1.hero-logo img{display:block;width:min(100%,440px);height:auto}
 .lightbox img{max-width:min(92vw,520px);max-height:88vh;border-radius:18px;display:block}
 .lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:2px solid #fff;background:rgba(0,0,0,.5);color:#fff;font-size:1.8rem;cursor:pointer;display:grid;place-items:center;padding:0 0 4px}
 .lb-close{top:16px;right:16px}.lb-prev{left:16px;top:50%}.lb-next{right:16px;top:50%}
+
+/* Home: featured game */
+.feature{display:flex;gap:18px;align-items:center;text-decoration:none;color:var(--ink);border:2px solid var(--ink);border-radius:12px;background:var(--surface);padding:16px;margin:0 0 20px;box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.feature:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--accent)}
+.feature-icon{width:96px;height:96px;border-radius:22px;border:2px solid var(--ink);flex:none;display:block}
+.feature h3{margin:2px 0 4px;font-size:1.5rem}
+.feature p{margin:0 0 6px;color:var(--muted)}
+.feature-link{font-weight:700;color:var(--accent)}
+/* nicer spacing */
+.card .body .btn{margin-top:6px}
+.card .body{display:flex;flex-direction:column;align-items:flex-start}
+@media(max-width:520px){
+  nav{gap:0}
+  nav a{padding:6px 9px;font-size:.9rem}
+  .feature-icon{width:72px;height:72px;border-radius:16px}
+}
+.feature{margin-top:28px}
+.feature .page-kicker{display:block}
+.card .body .btn{text-decoration:none}
+@media(max-width:520px){nav a{padding:6px 6px;font-size:.85rem}.bar{padding-left:14px;padding-right:14px}}

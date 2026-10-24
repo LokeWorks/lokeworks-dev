@@ -236,7 +236,7 @@ function renderSocials(){
     left.appendChild(el("small",null,s.note));
 
     row.appendChild(left);
-    row.appendChild(el("small",null,s.url?"Open":"Link coming soon"));
+    row.appendChild(el("small",null,s.url?"Open \u2197":"Link coming soon"));
     li.appendChild(row);
     u.appendChild(li);
   });
