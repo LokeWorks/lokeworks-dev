@@ -3,6 +3,7 @@
 var BEAN_IMG = "assets/beanbound.jpg";
 var PROJECTS = [
   {slug:"beanbound", icon:"assets/beanbound/icon.png", tagline:"How far can you grow?", price:"Free on iOS",
+   facts:[["Price","Free"],["Platform","iOS"],["Ads","None"],["Status","Released"]],
    shots:["assets/beanbound/shot1.jpg","assets/beanbound/shot2.jpg","assets/beanbound/shot3.jpg"],
    name:"Beanbound 🌱", kind:"iOS", status:"Released", blurb:"You play as a bean climbing from the dirt all the way to space at 100,000m, dodging hazards and evolving as you go. No ads, free to play. How far can you grow?", url:"https://apps.apple.com/us/app/beanbound/id6818844668", cta:"Get it on the App Store", img:BEAN_IMG, alt:"Beanbound gameplay: a smiling bean on a vine climbing through a forest, collecting water drops and dodging birds"},
   // {name:"Project name", kind:"VR", status:"Prototype", blurb:"One line about the game and what makes it fun.", url:""},
@@ -81,6 +82,31 @@ function renderProjects(){
   });
 }
 
+function openLightbox(shots,start,name){
+  var i=start;
+  var box=el("div","lightbox");
+  box.setAttribute("role","dialog"); box.setAttribute("aria-modal","true");
+  var img=el("img");
+  var close=el("button","lb-btn lb-close","\u00d7"); close.setAttribute("aria-label","Close");
+  var pv=el("button","lb-btn lb-prev","\u2039"); pv.setAttribute("aria-label","Previous");
+  var nx=el("button","lb-btn lb-next","\u203a"); nx.setAttribute("aria-label","Next");
+  function show(){ img.src=shots[i]; img.alt=name+" screenshot "+(i+1); }
+  function go(d){ i=(i+d+shots.length)%shots.length; show(); }
+  function shut(){ document.removeEventListener("keydown",key); box.remove(); document.body.style.overflow=""; }
+  function key(e){ if(e.key==="Escape")shut(); else if(e.key==="ArrowLeft")go(-1); else if(e.key==="ArrowRight")go(1); }
+  pv.onclick=function(e){e.stopPropagation();go(-1);};
+  nx.onclick=function(e){e.stopPropagation();go(1);};
+  close.onclick=shut;
+  box.onclick=function(e){ if(e.target===box) shut(); };
+  box.appendChild(img); box.appendChild(close);
+  if(shots.length>1){ box.appendChild(pv); box.appendChild(nx); }
+  document.addEventListener("keydown",key);
+  document.body.style.overflow="hidden";
+  show();
+  document.body.appendChild(box);
+  close.focus();
+}
+
 function renderProjectPage(){
   var side=document.getElementById("projSide");
   var main=document.getElementById("projMain");
@@ -98,6 +124,9 @@ function renderProjectPage(){
   if(!cur){ main.appendChild(el("p","sub","No projects yet.")); return; }
   document.title=cur.name+" — LokeWorks";
 
+  var back=el("a","proj-back","\u2190 All projects");
+  back.href="projects.html";
+  main.appendChild(back);
   var head=el("div","proj-head");
   if(cur.icon){
     var ic=el("img","proj-icon");
@@ -119,14 +148,32 @@ function renderProjectPage(){
       im.src=src; im.alt=cur.name+" screenshot "+(i+1); im.loading="lazy";
       row.appendChild(im);
     });
-    main.appendChild(row);
+    var wrap=el("div","proj-shots-wrap");
+    var prev=el("button","proj-arrow prev","\u2039"); prev.setAttribute("aria-label","Scroll screenshots left");
+    var next=el("button","proj-arrow next","\u203a"); next.setAttribute("aria-label","Scroll screenshots right");
+    prev.onclick=function(){row.scrollBy({left:-row.clientWidth*0.8,behavior:"smooth"});};
+    next.onclick=function(){row.scrollBy({left:row.clientWidth*0.8,behavior:"smooth"});};
+    wrap.appendChild(row); wrap.appendChild(prev); wrap.appendChild(next);
+    main.appendChild(wrap);
+    row.querySelectorAll("img").forEach(function(im,i){
+      im.tabIndex=0; im.style.cursor="zoom-in";
+      var open=function(){openLightbox(cur.shots,i,cur.name);};
+      im.addEventListener("click",open);
+      im.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
+    });
+  }
+  if(cur.facts&&cur.facts.length){
+    var strip=el("div","proj-facts");
+    cur.facts.forEach(function(f){
+      var d=el("div","proj-fact");
+      d.appendChild(el("span","proj-fact-k",f[0]));
+      d.appendChild(el("strong",null,f[1]));
+      strip.appendChild(d);
+    });
+    main.appendChild(strip);
   }
   main.appendChild(el("h2","proj-h2","About"));
   main.appendChild(el("p","proj-about",cur.blurb));
-  var t=el("div","proj-tags");
-  t.appendChild(el("span","tag",cur.status));
-  t.appendChild(el("span","tag plain",cur.kind));
-  main.appendChild(t);
 }
 
 var activeType="All";
