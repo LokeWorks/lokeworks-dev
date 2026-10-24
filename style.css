@@ -292,3 +292,33 @@ h1.hero-logo img{display:block;width:min(100%,440px);height:auto}
 .feature .page-kicker{display:block}
 .card .body .btn{text-decoration:none}
 @media(max-width:520px){nav a{padding:6px 6px;font-size:.85rem}.bar{padding-left:14px;padding-right:14px}}
+
+/* 404 */
+.nf{text-align:center;padding:30px 0}
+.nf-guy{width:150px;height:auto;display:block;margin:0 auto 6px;animation:bob 3s ease-in-out infinite}
+.nf-title{font-size:clamp(4rem,16vw,7rem);line-height:1;margin:0 0 6px;color:var(--accent)}
+
+/* Motion (turned off for people who prefer reduced motion) */
+@view-transition{navigation:auto}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-2.5deg)}75%{transform:rotate(2.5deg)}}
+main section>*{animation:rise .5s ease both}
+main section>*:nth-child(2){animation-delay:.06s}
+main section>*:nth-child(3){animation-delay:.12s}
+main section>*:nth-child(4){animation-delay:.18s}
+main section>*:nth-child(5){animation-delay:.24s}
+main section>*:nth-child(n+6){animation-delay:.3s}
+.grid>.card{animation:rise .5s ease both}
+.grid>.card:nth-child(2){animation-delay:.08s}
+.grid>.card:nth-child(3){animation-delay:.16s}
+.logo-img{transition:transform .15s}
+.logo:hover .logo-img{animation:wiggle .4s ease}
+.hero .guy{animation:bob 3.4s ease-in-out infinite}
+.hero .guy:active{animation:none;transform:scale(.97)}
+.btn,.card,.feature,.tool,.proj-pill,nav a{transition:transform .12s,box-shadow .12s,background .12s,border-color .12s}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  @view-transition{navigation:none}
+}
+.nf .lede,.nf .sub{text-align:center;margin-left:auto;margin-right:auto}
