@@ -355,3 +355,12 @@ main section>*:nth-child(n+6){animation-delay:.3s}
 .unlock-bar{height:14px;border:2px solid var(--ink);border-radius:999px;margin-top:10px;overflow:hidden;background:var(--bg)}
 .unlock-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .6s}
 .unlock-card .unlock-num{margin-top:6px;font-weight:700;color:var(--ink)}
+
+/* Project page: how to play */
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:6px}
+.howto-box{border:2px solid var(--ink);border-radius:12px;background:var(--surface);padding:14px 16px}
+.howto-box h3{margin:0 0 8px}
+.howto-box dl{margin:0}
+.howto-box dt{font-weight:700;margin-top:10px}
+.howto-box dt:first-child{margin-top:0}
+.howto-box dd{margin:2px 0 0;color:var(--muted);font-size:.95rem}

@@ -4,6 +4,13 @@ var BEAN_IMG = "assets/beanbound.jpg";
 var PROJECTS = [
   {slug:"beanbound", icon:"assets/beanbound/icon.png", tagline:"How far can you grow?", price:"Free on iOS",
    facts:[["Price","Free"],["Platform","iOS"],["Ads","None"],["Status","Released"]],
+   howto:{
+     intro:"Drag anywhere to steer your shoot. Catch raindrops before you run dry, avoid hazards, and climb to 100,000 m to reach space.",
+     groups:[
+       {title:"Obstacles", items:[["Rocks","Found underground."],["Birds","Fly around the ground layer."],["Clouds, storms and balloons","Hazards in the sky."]]},
+       {title:"Abilities", items:[["Water","Restores your water."],["Sun Orb","Gives you a shield and bonus score."],["Seed Pack","Extremely rare. Gives you one random ability."]]}
+     ]
+   },
    shots:["assets/beanbound/shot1.jpg","assets/beanbound/shot2.jpg","assets/beanbound/shot3.jpg"],
    name:"Beanbound 🌱", kind:"iOS", status:"Released", blurb:"You play as a bean climbing from the dirt all the way to space at 100,000m, dodging hazards and evolving as you go. No ads, free to play. How far can you grow?", url:"https://apps.apple.com/us/app/beanbound/id6818844668", cta:"Get it on the App Store", img:BEAN_IMG, alt:"Beanbound gameplay: a smiling bean on a vine climbing through a forest, collecting water drops and dodging birds"},
   // {name:"Project name", kind:"VR", status:"Prototype", blurb:"One line about the game and what makes it fun.", url:""},
@@ -175,6 +182,23 @@ function renderProjectPage(){
   }
   main.appendChild(el("h2","proj-h2","About"));
   main.appendChild(el("p","proj-about",cur.blurb));
+  if(cur.howto){
+    main.appendChild(el("h2","proj-h2","How to play"));
+    if(cur.howto.intro) main.appendChild(el("p","proj-about",cur.howto.intro));
+    var hg=el("div","howto");
+    cur.howto.groups.forEach(function(gr){
+      var box=el("div","howto-box");
+      box.appendChild(el("h3",null,gr.title));
+      var dl=el("dl");
+      gr.items.forEach(function(it){
+        dl.appendChild(el("dt",null,it[0]));
+        dl.appendChild(el("dd",null,it[1]));
+      });
+      box.appendChild(dl);
+      hg.appendChild(box);
+    });
+    main.appendChild(hg);
+  }
 }
 
 var activeType="All";
