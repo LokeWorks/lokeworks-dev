@@ -322,3 +322,16 @@ main section>*:nth-child(n+6){animation-delay:.3s}
   @view-transition{navigation:none}
 }
 .nf .lede,.nf .sub{text-align:center;margin-left:auto;margin-right:auto}
+
+/* Roadmap */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.road-col{border:2px solid var(--ink);border-radius:12px;background:var(--surface);padding:14px}
+.road-col h3{margin:0 0 12px;display:flex;justify-content:space-between;align-items:center}
+.road-count{font-size:.8rem;font-weight:800;border:2px solid var(--ink);border-radius:999px;padding:0 9px}
+.road-doing h3{color:var(--accent)}
+.road-card{border:2px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 10px;background:var(--bg)}
+.road-card p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.road-empty{color:var(--muted);margin:0}
+.road-done .road-card strong::before{content:"\2713  ";color:var(--accent)}
+@media(max-width:760px){.road{grid-template-columns:1fr}}
+@media(max-width:520px){nav a{padding:6px 5px;font-size:.8rem}.bar{padding-left:10px;padding-right:10px}}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"><head><!--
+  ===================== EDIT YOUR ROADMAP HERE =====================
+  Each line is one item:  {title:"...", note:"...", status:"..."}
+  status can be:  "doing"   = In progress
+                  "planned" = Planned
+                  "done"    = Done
+  Add a new line, change a status to move it, or delete a line.
+  Keep the comma at the end of each line (except it is fine on the last one too).
+  Lines starting with // are turned off.
+  ==================================================================
+-->
+<script>
+var ROADMAP = [
+  {title:"Beanbound released on iOS", note:"Free, no ads.", status:"done"},
+  {title:"LokeWorks website launched", note:"Projects, assets, socials and more.", status:"done"},
+  // {title:"Something I am building", note:"A short line about it.", status:"doing"},
+  // {title:"Something coming later", note:"A short line about it.", status:"planned"},
+];
+</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Roadmap — LokeWorks</title><meta name="description" content="What LokeWorks is working on, what is planned and what is done."/><meta name="theme-color" content="#4397F7"/><meta property="og:type" content="website"/><meta property="og:site_name" content="LokeWorks"/><meta property="og:title" content="Roadmap — LokeWorks"/><meta property="og:description" content="What LokeWorks is working on, what is planned and what is done."/><meta property="og:image" content="https://lokeworks.github.io/lokeworks-dev/assets/og-image.png"/><meta name="twitter:card" content="summary_large_image"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;display=swap" rel="stylesheet"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="assets/favicon-32.png" rel="icon" type="image/png" sizes="32x32"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><link href="style.css?v=12" rel="stylesheet"/></head><body><header>
+<div class="bar">
+<a aria-label="LokeWorks home" class="logo" href="index.html"><img alt="LokeWorks" class="logo-img" src="assets/lokeworks-logo-site.svg?v=3"/></a>
+<nav aria-label="Main"><a href="index.html">Home</a><a href="projects.html">Projects</a><a aria-current="page" href="roadmap.html">Roadmap</a><a href="assets.html">Assets</a><a href="videos.html">Videos</a><a href="socials.html">Socials</a></nav>
+</div>
+</header><main><section>
+<h2>Roadmap</h2>
+<p class="sub">What I’m working on, what’s next, and what’s done.</p>
+<div class="road" id="road"></div>
+</section></main>
+<script>
+(function(){
+  var cols=[["doing","In progress"],["planned","Planned"],["done","Done"]];
+  var root=document.getElementById("road");
+  cols.forEach(function(c){
+    var items=ROADMAP.filter(function(r){return r.status===c[0];});
+    var col=document.createElement("div");col.className="road-col road-"+c[0];
+    var h=document.createElement("h3");h.textContent=c[1];
+    var n=document.createElement("span");n.className="road-count";n.textContent=items.length;h.appendChild(n);
+    col.appendChild(h);
+    if(!items.length){var p=document.createElement("p");p.className="road-empty";p.textContent="Nothing here yet.";col.appendChild(p);}
+    items.forEach(function(r){
+      var card=document.createElement("div");card.className="road-card";
+      var t=document.createElement("strong");t.textContent=r.title;card.appendChild(t);
+      if(r.note){var d=document.createElement("p");d.textContent=r.note;card.appendChild(d);}
+      col.appendChild(card);
+    });
+    root.appendChild(col);
+  });
+})();
+</script></body></html>
