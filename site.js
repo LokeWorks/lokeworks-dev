@@ -340,39 +340,3 @@ document.addEventListener("click",function(e){
   guy.addEventListener("pointerleave",up);
   guy.addEventListener("contextmenu",function(e){e.preventDefault();});
 })();
-
-// Secret: tap the smiley on Loke's shirt 5 times, quickly.
-(function(){
-  var busy=false,taps=0,tapTimer;
-  document.addEventListener("pointerdown",function(e){
-    var g=e.target.closest&&e.target.closest("#guy");
-    if(!g) return;
-    var r=g.getBoundingClientRect();
-    var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
-    var dx=x-0.52, dy=(y-0.58)*(r.height/r.width);
-    if(Math.sqrt(dx*dx+dy*dy)>0.09){ taps=0; return; }
-    taps++; clearTimeout(tapTimer); tapTimer=setTimeout(function(){taps=0;},2500);
-    if(taps>=5){taps=0;party();}
-  });
-  function party(){
-    if(busy) return; busy=true;
-    var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var c=document.createElement("canvas");
-    c.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:200";
-    c.width=innerWidth; c.height=innerHeight; document.body.appendChild(c);
-    var g=c.getContext("2d"),bits=["\u{1F331}","\u{1FAD8}","\u2B50","\u{1F389}","\u{1F4A7}"],ps=[];
-    for(var i=0;i<(reduce?30:110);i++) ps.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,v:2+Math.random()*3,r:Math.random()*6,s:18+Math.random()*18,e:bits[i%bits.length],w:Math.random()*2-1});
-    var msg=el("div",null,"You found the secret! \u{1F331}");
-    msg.style.cssText="position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:201;font-weight:800;font-size:clamp(1.4rem,6vw,2.6rem);background:#ffd23f;color:#1b1a3a;border:3px solid #1b1a3a;border-radius:14px;padding:12px 20px;box-shadow:6px 6px 0 #1b1a3a;text-align:center";
-    document.body.appendChild(msg);
-    var guy=document.getElementById("guy"),t0=performance.now();
-    if(guy&&!reduce){guy.style.transition="transform .9s";guy.style.transform="rotate(360deg)";setTimeout(function(){guy.style.transform="";},950);}
-    (function frame(t){
-      g.clearRect(0,0,c.width,c.height);
-      ps.forEach(function(p){p.y+=p.v;p.x+=p.w;p.r+=0.05;g.font=p.s+"px serif";g.save();g.translate(p.x,p.y);g.rotate(p.r);g.fillText(p.e,0,0);g.restore();});
-      if(t-t0<4200) requestAnimationFrame(frame);
-      else { c.remove(); msg.remove(); busy=false; }
-    })(t0);
-  }
-  try{console.log("%cLokeWorks","font-size:22px;font-weight:800;color:#cc484c","- psst, the smile on his shirt knows something.");}catch(e){}
-})();
