@@ -22,7 +22,8 @@ var SOCIALS = [
   {name:"Twitch", note:"Live development", url:"https://www.twitch.tv/lokeworks"},
   {name:"Discord", note:"Chat and feedback", url:"https://discord.com/invite/9qu84vd3em"},
   {name:"Instagram", note:"Clips and screenshots", url:"https://www.instagram.com/lokeworks"},
-  {name:"Twitter", note:"My personal account, but I still post updates here", url:"https://x.com/lokeworks"}
+  {name:"Twitter", note:"My personal account, but I still post updates here", url:"https://x.com/lokeworks"},
+  {name:"Email", note:"Business and general inquiries", url:"mailto:everloke8@gmail.com"}
 ];
 
 function el(t,c,h){
@@ -224,8 +225,10 @@ function renderSocials(){
     if(s.url){
       row=el("a");
       row.href=s.url;
-      row.target="_blank";
-      row.rel="noopener";
+      if(s.url.indexOf("mailto:")!==0){
+        row.target="_blank";
+        row.rel="noopener";
+      }
     } else {
       row=el("div","off");
     }
@@ -236,7 +239,7 @@ function renderSocials(){
     left.appendChild(el("small",null,s.note));
 
     row.appendChild(left);
-    row.appendChild(el("small",null,s.url?"Open \u2197":"Link coming soon"));
+    row.appendChild(el("small",null,s.url?(s.url.indexOf("mailto:")===0?"Send \u2709":"Open \u2197"):"Link coming soon"));
     li.appendChild(row);
     u.appendChild(li);
   });
