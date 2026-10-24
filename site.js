@@ -350,3 +350,22 @@ document.addEventListener("click",function(e){
     if(pos===code.length){pos=0;window.location.href="secret.html";}
   });
 })();
+
+// Phone version of the cheat code: swipe up, up, down, down, left, right, left, right, then tap twice.
+(function(){
+  var seq=["u","u","d","d","l","r","l","r","t","t"],pos=0,sx,sy,last=0;
+  document.addEventListener("touchstart",function(e){
+    var t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;
+  },{passive:true});
+  document.addEventListener("touchend",function(e){
+    var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,now=Date.now(),m;
+    if(now-last>6000) pos=0;
+    last=now;
+    if(Math.abs(dx)<12&&Math.abs(dy)<12) m="t";
+    else if(Math.abs(dx)<50&&Math.abs(dy)<50) return;
+    else if(Math.abs(dy)>Math.abs(dx)) m=dy<0?"u":"d";
+    else m=dx<0?"l":"r";
+    pos=(m===seq[pos])?pos+1:(m===seq[0]?1:0);
+    if(pos===seq.length){pos=0;window.location.href="secret.html";}
+  },{passive:true});
+})();
