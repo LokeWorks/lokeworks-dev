@@ -38,7 +38,7 @@
     {
       "title": "Main Menu",
       "description": "A simple, no-frills main menu with Play and Quit buttons and a gradient background. Drop it into your project and wire up the buttons.",
-      "file": "assets/UI/mainmenu.unitypackage",
+      "file": "assets/UI/Mainmenu.unitypackage",
       "buttonText": "Download Package",
       "tags": [
         "Unity",
