@@ -375,3 +375,20 @@ h1.page-h{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.03em;line-height:1
 .suggest-note{margin:10px 0 0;color:var(--muted);font-size:.85rem}
 .asset-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
 .asset-tag{display:inline-block;padding:3px 10px;border:2px solid var(--ink);border-radius:999px;font-size:.75rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#fff;color:var(--ink)}
+
+
+/* High-contrast project badges */
+.asset-tag,
+.tag,
+.tag.plain {
+  background: #fff;
+  color: #24233f;
+  border-color: #24233f;
+  text-shadow: none;
+  opacity: 1;
+}
+.asset-tag {
+  font-weight: 900;
+  letter-spacing: .035em;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
