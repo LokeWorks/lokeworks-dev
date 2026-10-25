@@ -275,11 +275,11 @@ if(document.getElementById("projMain")) renderProjectPage();
 if(document.getElementById("videoGrid")) renderVideos();
 if(document.getElementById("socialList")) renderSocials();
 
-var FALLBACK_ASSETS={"fonts-and-code": [{"title": "Bagel Fat One", "description": "Main font used in Beanbound.", "file": "assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip", "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg", "buttonText": "Download Font"}, {"title": "LokeWorks Norm", "description": "The official LokeWorks font.", "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf", "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg", "buttonText": "Download Font"}, {"title": "Newyear Coffee", "description": "idk just a good font", "file": "assets/Fonts%20and%20Code/Newyear_Coffee.zip", "preview": "assets/Fonts%20and%20Code/newyear-coffee-preview.jpg", "buttonText": "Download Font", "credit": "Khurasan", "creditUrl": "https://www.khurasanstudio.com", "supportUrl": "https://paypal.me/khurasantype"}], "3D": [], "2D": []};
+var FALLBACK_ASSETS={"fonts-and-code": [{"title": "Bagel Fat One", "description": "Main font used in Beanbound.", "file": "assets/Fonts%20and%20Code/Bagel_Fat_One%20(1).zip", "preview": "assets/Fonts%20and%20Code/IMG_6233.jpeg", "buttonText": "Download Font"}, {"title": "LokeWorks Norm", "description": "The official LokeWorks font.", "file": "assets/Fonts%20and%20Code/LokeWorks-norm.ttf", "preview": "assets/Fonts%20and%20Code/IMG_6234.jpeg", "buttonText": "Download Font"}, {"title": "Newyear Coffee", "description": "idk just a good font", "file": "assets/Fonts%20and%20Code/Newyear_Coffee.zip", "preview": "assets/Fonts%20and%20Code/newyear-coffee-preview.jpg", "buttonText": "Download Font", "credit": "Khurasan", "creditUrl": "https://www.khurasanstudio.com", "supportUrl": "https://paypal.me/khurasantype"}], "3D": [{"title": "Cone", "description": "A cone from my first video that never ended up releasing because the game project got corrupted. 😢", "file": "assets/3D/cone.fbx", "preview": "assets/3D/cone.png", "buttonText": "Download Model"}], "ui-assets": [{"title": "Main Menu", "description": "A simple, no-frills main menu with Play and Quit buttons and a gradient background. Drop it into your project and wire up the buttons.", "file": "assets/UI/main-menu.unitypackage", "buttonText": "Download Package", "tags": ["Unity", "Vibe Coded"]}]};
 
 // Load assets listed in assets/assets.json. Empty categories stay hidden.
 async function renderFolderAssets(){
-  var keys=["fonts-and-code","3D","2D"];
+  var keys=["fonts-and-code","3D","ui-assets"];
   var empty=document.getElementById("assetsEmpty");
   var shown=0;
   try{
@@ -311,6 +311,11 @@ async function renderFolderAssets(){
         var body=el("div","body");
         body.appendChild(el("h3",null,item.title||item.name||"Untitled asset"));
         if(item.description) body.appendChild(el("p",null,item.description));
+        if(item.tags&&item.tags.length){
+          var tagRow=el("div","asset-tags");
+          item.tags.forEach(function(t){tagRow.appendChild(el("span","asset-tag",t));});
+          body.appendChild(tagRow);
+        }
         if(item.file){
           var link=el("a","btn alt",item.buttonText||"Download");
           link.href=item.file;
