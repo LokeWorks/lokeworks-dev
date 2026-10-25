@@ -33,6 +33,20 @@
       "preview": "assets/3D/cone.png",
       "buttonText": "Download Model"
     }
+    {
+      "title": "Car",
+      "description": "A car from my first video that never ended up releasing.",
+      "file": "assets/3D/car.fbx",
+      "preview": "assets/3D/car.png",
+      "buttonText": "Download Model"
+    }
+    {
+      "title": "Truck",
+      "description": "A truck from my first video that never ended up releasing",
+      "file": "assets/3D/truck.fbx",
+      "preview": "assets/3D/truck.png",
+      "buttonText": "Download Model"
+    }
   ],
   "ui-assets": [
     {
