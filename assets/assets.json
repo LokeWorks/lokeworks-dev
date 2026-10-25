@@ -25,6 +25,13 @@
       "supportUrl": "https://paypal.me/khurasantype"
     }
   ],
-  "3D": [],
+  "3D": [
+    {
+      "title": "Cone",
+      "description": "A cone from my first video that never ended up releasing because the game project got corrupted. 😢",
+      "file": "assets/3D/cone.fbx",
+      "buttonText": "Download Model"
+    }
+  ],
   "2D": []
 }
