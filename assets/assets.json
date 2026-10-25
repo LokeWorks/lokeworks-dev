@@ -30,6 +30,7 @@
       "title": "Cone",
       "description": "A cone from my first video that never ended up releasing because the game project got corrupted. 😢",
       "file": "assets/3D/cone.fbx",
+      "preview": "assets/3D/cone.png",
       "buttonText": "Download Model"
     }
   ],
