@@ -392,22 +392,3 @@ h1.page-h{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.03em;line-height:1
   letter-spacing: .035em;
   box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
-
-/* Community page + Loke VR */
-.comm-h{font-size:1.5rem;margin:30px 0 12px}
-.vr-card{position:relative;display:block;text-decoration:none;color:#f4f1ff;border:2px solid var(--ink);border-radius:14px;padding:24px 22px 20px;overflow:hidden;box-shadow:6px 6px 0 var(--ink);
-  background:
-   radial-gradient(1.5px 1.5px at 12% 22%,#fff,transparent),radial-gradient(1.5px 1.5px at 34% 70%,#fff,transparent),radial-gradient(2px 2px at 58% 30%,#fff,transparent),
-   radial-gradient(1.5px 1.5px at 78% 62%,#fff,transparent),radial-gradient(1.5px 1.5px at 90% 18%,#fff,transparent),radial-gradient(1px 1px at 47% 88%,#fff,transparent),
-   linear-gradient(135deg,#2b1a5e,#3a3fb0);transition:transform .12s,box-shadow .12s}
-.vr-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--accent)}
-.vr-kicker{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;color:#c9bdff}
-.vr-title{display:block;font-size:clamp(2rem,7vw,3rem);font-weight:800;line-height:1.05;margin:6px 0 8px}
-.vr-tag{display:block;font-size:1.05rem;max-width:60ch}
-.vr-go{display:inline-block;margin-top:14px;font-weight:700;color:#fff;border-bottom:2px solid #c9bdff}
-.vr-hero{border:2px solid var(--ink);border-radius:14px;padding:26px 22px;margin:0 0 20px;color:#f4f1ff;box-shadow:6px 6px 0 var(--ink);
-  background:
-   radial-gradient(1.5px 1.5px at 10% 25%,#fff,transparent),radial-gradient(2px 2px at 40% 65%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 28%,#fff,transparent),
-   radial-gradient(1.5px 1.5px at 88% 72%,#fff,transparent),linear-gradient(135deg,#2b1a5e,#3a3fb0)}
-.vr-h1{font-size:clamp(2.4rem,9vw,3.8rem);line-height:1;margin:6px 0 0;letter-spacing:-.03em}
-.vr-text{font-size:1.15rem;max-width:60ch;line-height:1.6}
