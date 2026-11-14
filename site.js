@@ -22,6 +22,9 @@ var VIDEOS = [
   // {title:"Short title", type:"Short", blurb:"One quick idea, under a minute.", url:""},
   // {title:"Prototype title", type:"Prototype", blurb:"A first look at a new idea.", url:""},
   // {title:"Release title", type:"Release", blurb:"A finished game, out now.", url:""}
+  // To add a video: copy a line, set type to Devlog, Short, Prototype or Release, and paste the YouTube link in url.
+  // "id" is the part after youtu.be/ and makes the thumbnail show up automatically.
+  {title:"My latest video", type:"Release", blurb:"", url:"https://youtu.be/DRPxyGauLYI", id:"DRPxyGauLYI"}
 ];
 
 var SOCIALS = [
@@ -222,13 +225,21 @@ function renderVideos(){
     return activeType==="All"||v.type===activeType;
   }).forEach(function(v){
     var c=el("article","card");
-    c.appendChild(el("div","thumb","Thumbnail"));
+    var th=el("div","thumb");
+    if(v.id){
+      var im=el("img");
+      im.src="https://i.ytimg.com/vi/"+v.id+"/hqdefault.jpg";
+      im.alt=v.title+" thumbnail";
+      im.loading="lazy";
+      th.appendChild(im);
+    } else th.textContent="Thumbnail";
+    c.appendChild(th);
     var b=el("div","body");
     b.appendChild(el("span","tag",v.type));
     var h=el("h3",null,v.title);
     h.style.marginTop="8px";
     b.appendChild(h);
-    b.appendChild(el("p",null,v.blurb));
+    if(v.blurb) b.appendChild(el("p",null,v.blurb));
     b.appendChild(linkOrOff(v,"Watch on YouTube"));
     c.appendChild(b);
     g.appendChild(c);
