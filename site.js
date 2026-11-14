@@ -368,6 +368,16 @@ document.addEventListener("click",function(e){
   if(b) window.location.href=b.getAttribute("data-go")+".html";
 });
 
+// Support me button: not hooked up yet, so it just says "Coming soon" for a moment.
+document.addEventListener("click",function(e){
+  var b=e.target.closest&&e.target.closest("[data-soon]");
+  if(!b||b.getAttribute("data-busy")) return;
+  var old=b.textContent;
+  b.setAttribute("data-busy","1");
+  b.textContent="Coming soon";
+  setTimeout(function(){b.textContent=old;b.removeAttribute("data-busy");},1800);
+});
+
 // Home page: press and hold Loke to swap his picture; let go to swap back.
 (function(){
   var guy=document.getElementById("guy");
